@@ -34,9 +34,18 @@
             </div>
         </div>
 
-        <div class="row g-3 align-items-center">
-            <div class="col-4 d-block mx-auto my-3">
-                <button type="submit" class="btn btn-primary w-100">Signup</button>
+        <div class="row align-items-center">
+            <div class="col-6 mx-auto">
+                <button type="submit" class="col-4 btn btn-primary m-1">
+                    Signup
+                </button>
+                <button
+                    type="button"
+                    @click="loginPage"
+                    class="col-4 btn btn-primary m-1"
+                >
+                    Login
+                </button>
             </div>
         </div>
     </form>
@@ -51,7 +60,12 @@ export default {
             password: '',
             email: '',
         }
-    }
+    },
+    methods: {
+        loginPage() {
+            this.$router.push({name: 'login'})
+        }
+    },
 }
 </script>
 

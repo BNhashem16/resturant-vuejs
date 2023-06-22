@@ -22,17 +22,21 @@
             </div>
         </div>
 
-        <div class="row g-3 align-items-center">
-            <div class="col-4 d-block mx-auto my-3">
-                <button type="submit" class="btn btn-primary w-100">
-                    Login
-                </button>
+        <div class="row align-items-center">
+            <div class="col-6 mx-auto">
+                    <button type="submit" class="col-4 btn btn-primary m-1">
+                        Login
+                    </button>
+                    <button type="button" @click="signupPage" class="col-4 btn btn-primary m-1">
+                        Signup
+                    </button>
             </div>
         </div>
     </form>
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -41,6 +45,11 @@ export default {
             email: '',
         }
     },
+    methods: {
+        signupPage() {
+            this.$router.push({name: "signup"})
+        }
+    }
 }
 </script>
 
