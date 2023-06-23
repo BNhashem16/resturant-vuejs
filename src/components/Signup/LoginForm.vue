@@ -24,19 +24,23 @@
 
         <div class="row align-items-center">
             <div class="col-6 mx-auto">
-                    <button type="submit" class="col-4 btn btn-primary m-1">
-                        Login
-                    </button>
-                    <button type="button" @click="signupPage" class="col-4 btn btn-primary m-1">
-                        Signup
-                    </button>
+                <button type="submit" class="col-4 btn btn-primary m-1">
+                    Login
+                </button>
+                <button
+                    type="button"
+                    @click="redirectTo({ name: 'signup' })"
+                    class="col-4 btn btn-primary m-1"
+                >
+                    Signup
+                </button>
             </div>
         </div>
     </form>
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
     data() {
         return {
@@ -46,10 +50,8 @@ export default {
         }
     },
     methods: {
-        signupPage() {
-            this.$router.push({name: "signup"})
-        }
-    }
+        ...mapActions(['redirectTo']),
+    },
 }
 </script>
 

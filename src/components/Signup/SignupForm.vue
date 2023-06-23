@@ -41,7 +41,7 @@
                 </button>
                 <button
                     type="button"
-                    @click="loginPage"
+                    @click="redirectTo({ name: 'login'})"
                     class="col-4 btn btn-primary m-1"
                 >
                     Login
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: 'SignupForm',
     data() {
@@ -62,9 +63,7 @@ export default {
         }
     },
     methods: {
-        loginPage() {
-            this.$router.push({name: 'login'})
-        }
+        ...mapActions(['redirectTo']),
     },
 }
 </script>
