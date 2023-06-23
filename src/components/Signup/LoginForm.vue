@@ -49,6 +49,7 @@ export default {
             email: '',
         }
     },
+
     methods: {
         ...mapActions(['redirectTo']),
     },
