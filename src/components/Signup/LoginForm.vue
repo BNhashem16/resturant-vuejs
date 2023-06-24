@@ -73,6 +73,12 @@ export default {
     data() {
         return {}
     },
+    mounted() {
+        let user = localStorage.getItem('user')
+        if (user) {
+            this.redirectTo({ name: 'signup' })
+        }
+    },
 
     methods: {
         ...mapActions(['redirectTo']),
