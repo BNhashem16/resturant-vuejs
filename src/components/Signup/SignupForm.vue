@@ -66,6 +66,8 @@
 import { mapActions } from 'vuex'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
+// import axios from 'axios'
+import axiosInstance from '@/axiosInstance'
 
 export default {
     name: 'SignupForm',
@@ -83,10 +85,36 @@ export default {
             email: { required, email },
         }
     },
+    mounted() {
+        let user = localStorage.getItem('user')
+        if (user) {
+            this.redirectTo({ name: 'home' })
+        }
+    },
+
     methods: {
         ...mapActions(['redirectTo']),
-        signup() {
+        async signup() {
             this.v$.$validate()
+            if (!this.v$.$error) {
+                let result = await axiosInstance.post('/users', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                })
+                if (result.status == 201) {
+                    localStorage.setItem('user', JSON.stringify(result.data))
+                    this.redirectTo({ name: 'home' })
+                } else {
+                    console.log('error')
+                }
+                // .then((response) => {
+                //     console.log('success')
+                // })
+                // .catch((error) => {
+                //     // Handle the error
+                // })
+            }
         },
     },
 }
