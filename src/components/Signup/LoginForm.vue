@@ -1,6 +1,14 @@
 <template>
     <form @click.prevent>
         <div class="row g-3 align-items-center">
+            <div
+                class="col-4 mx-auto error-container"
+                v-if="errors_backend !== ''"
+            >
+                {{ errors_backend }}
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
             <div class="col-4 d-block mx-auto my-3">
                 <input
                     type="text"
@@ -50,9 +58,9 @@
 import { mapActions } from 'vuex'
 
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
-
+import axiosInstance from '@/axiosInstance'
 export default {
     setup() {
         const state = reactive({
@@ -71,7 +79,9 @@ export default {
         return { state, errors }
     },
     data() {
-        return {}
+        return {
+            errors_backend: '',
+        }
     },
     mounted() {
         let user = localStorage.getItem('user')
@@ -82,8 +92,20 @@ export default {
 
     methods: {
         ...mapActions(['redirectTo']),
-        login() {
+        async login() {
             this.errors.$validate()
+
+            if (!this.errors.$error) {
+                let result = await axiosInstance.get(
+                    `users?email=${this.state.email}&password=${this.state.password}`
+                )
+                if (result.status == 200 && result.data.length > 0) {
+                    localStorage.setItem('user', JSON.stringify(result.data[0]))
+                    this.redirectTo({name: 'home'})
+                } else {
+                    this.errors_backend = 'user not found'
+                }
+            }
         },
     },
 }
