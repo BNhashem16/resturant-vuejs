@@ -1,8 +1,8 @@
 <template>
     <form @click.prevent>
         <div class="row g-3 align-items-center">
-            <h1>Signup</h1>
             <div class="col-4 d-block mx-auto my-3">
+                <h1>Signup</h1>
                 <input
                     type="text"
                     class="form-control"
