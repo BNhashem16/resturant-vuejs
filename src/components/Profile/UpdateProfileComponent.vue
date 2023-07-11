@@ -80,9 +80,8 @@ export default {
                 })
                 if (result.status == 200) {
                     localStorage.setItem('user', JSON.stringify(result.data))
-                    this.redirectTo({name: 'profile'})
+                    this.redirectTo({ name: 'profile' })
                 } else {
-
                 }
             } else {
                 console.log('not valid')
@@ -112,6 +111,8 @@ export default {
             this.name = JSON.parse(user).name
             this.email = JSON.parse(user).email
             this.password = JSON.parse(user).password
+        } else {
+            this.redirectTo({ name: 'login' })
         }
     },
 }

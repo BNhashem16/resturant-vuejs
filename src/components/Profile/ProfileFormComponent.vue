@@ -59,7 +59,7 @@ export default {
     methods: {
         ...mapActions(['redirectTo']),
         updateProfile() {
-            this.redirectTo({name: 'updateProfile'})
+            this.redirectTo({ name: 'updateProfile' })
         },
     },
     data() {
@@ -75,6 +75,8 @@ export default {
             this.name = JSON.parse(user).name
             this.email = JSON.parse(user).email
             this.password = JSON.parse(user).password
+        } else {
+            this.redirectTo({ name: 'login' })
         }
     },
 }

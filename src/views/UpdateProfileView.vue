@@ -7,12 +7,12 @@
 
 <script>
 import NavbarComponent from '../components/Header/NavbarComponent'
-import UpdateProfileComponent from '@/components/Profile/UpdateProfileComponent.vue';
+import UpdateProfileComponent from '@/components/Profile/UpdateProfileComponent.vue'
 
 export default {
     components: {
-    NavbarComponent,
-    UpdateProfileComponent,
+        NavbarComponent,
+        UpdateProfileComponent,
     },
 }
 </script>
