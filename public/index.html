@@ -7,7 +7,7 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <!-- using custom css -->
     <link rel="stylesheet" href="<%= BASE_URL %>assets/style.css">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= process.env.VUE_APP_TITLE %></title>
   </head>
   <body>
     <noscript>

@@ -45,5 +45,18 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 })
+router.beforeEach((to, from, next) => {
+    if (to.params.pageTitle !== undefined) {
+        document.title = `${to.params.pageTitle} | ${process.env.VUE_APP_TITLE}`    
+  
+    } else {
+        if (to.name == null) {
+            document.title = process.env.VUE_APP_TITLE
+        } else {
+            document.title = `${to.name} | ${process.env.VUE_APP_TITLE}`
+        }
+    }
+    next()
+})
 
 export default router
