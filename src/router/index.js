@@ -4,6 +4,7 @@ import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
 import ProfileView from '../views/ProfileView.vue'
 import UpdateProfileView from '../views/UpdateProfileView.vue'
+import ErrorPageView from '../views/ErrorPageView.vue'
 const routes = [
     {
         path: '/',
@@ -30,14 +31,11 @@ const routes = [
         name: 'updateProfile',
         component: UpdateProfileView,
     },
+    // stay at the bottom
     {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+        path: '/:catchAll(.*)',
+        name: 'ErrorPage',
+        component: ErrorPageView,
     },
 ]
 
