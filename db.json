@@ -6,5 +6,12 @@
       "password": "password",
       "id": 1
     }
-  ]
+  ],
+  "locations": [
+    {
+      "name": "home",
+      "id": 1,
+      "user_id": 1
+    }
+  ]  
 }

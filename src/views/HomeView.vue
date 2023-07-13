@@ -1,17 +1,26 @@
 <template>
     <NavbarComponent></NavbarComponent>
     <div class="home">Home</div>
-    <p class="text-end">welcome {{ userName }}</p>
+    <div class="text-end">
+            <p class="text-end">welcome {{ userName }}</p>
     <router-link :to="{name: 'profile'}">
         <button class="btn btn-info" type="button">Profile</button>
     </router-link>
+    </div>
+
+    <AddNewLocationComponent></AddNewLocationComponent>
+    
 </template>
 
 <script>
 import NavbarComponent from '../components/Header/NavbarComponent'
+import AddNewLocationComponent from '@/components/Location/AddNewLocationComponent'
 import { mapActions } from 'vuex'
 export default {
-    components: { NavbarComponent },
+    components: {
+        NavbarComponent,
+        AddNewLocationComponent
+    },
     data() {
         return {
             userName: '',
