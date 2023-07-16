@@ -4,6 +4,7 @@ import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
 import ProfileView from '../views/ProfileView.vue'
 import UpdateProfileView from '../views/UpdateProfileView.vue'
+import LocationsCreateView from '../views/LocationsCreateView.vue'
 import ErrorPageView from '../views/ErrorPageView.vue'
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/update-profile',
         name: 'updateProfile',
         component: UpdateProfileView,
+    },
+    {
+        path: '/locations',
+        name: 'locations.store',
+        component: LocationsCreateView,
     },
     // stay at the bottom
     {

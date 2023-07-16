@@ -6,9 +6,15 @@
         <router-link :to="{ name: 'profile' }">
             <button class="btn btn-info" type="button">Profile</button>
         </router-link>
+
+    </div>
+    <div class="text-start">
+        <router-link :to="{ name: 'locations.store' }">
+            <button class="btn btn-info" type="button">Create New Location</button>
+        </router-link>
+
     </div>
 
-    <AddNewLocationComponent></AddNewLocationComponent>
     <UserLocationComponent
         :allLocations="listOfLocations"
     ></UserLocationComponent>

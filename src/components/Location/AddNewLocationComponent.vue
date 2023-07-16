@@ -1,96 +1,70 @@
 <template>
     <div>
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
-        >
-            Add New Location
-        </button>
+        <h1>Create Location</h1>
 
-        <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            Add New Restaurant
-                        </h1>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <form @click="prevent">
-                            <div class="mb-3">
-                                <label class="col-form-label">Name:</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="state.name"
-                                    placeholder="Enter your name"
-                                />
-                                <div class="error" v-if="v$.name.$error">
-                                    {{ v$.name.$errors[0].$message }}
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="col-form-label"
-                                    >Phone Number:</label
-                                >
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="state.phone"
-                                    placeholder="Enter your phone"
-                                />
-                                <div class="error" v-if="v$.phone.$error">
-                                    {{ v$.phone.$errors[0].$message }}
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="col-form-label">Address:</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="state.address"
-                                    placeholder="Enter your address"
-                                />
-                                <div class="error" v-if="v$.address.$error">
-                                    {{ v$.address.$errors[0].$message }}
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                        <button
-                            type="button"
-                            @click="addLocation()"
-                            class="btn btn-primary"
-                        >
-                            Add Now
-                        </button>
+        <form @click.prevent>
+            <div class="row align-items-center">
+                <div class="col-4 my-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        v-model="state.name"
+                        placeholder="Enter your name"
+                    />
+                    <div class="error" v-if="v$.name.$error">
+                        {{ v$.name.$errors[0].$message }}
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-4 my-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        v-model="state.phone"
+                        placeholder="Enter your phone"
+                    />
+                </div>
+
+                <div class="error" v-if="v$.phone.$error">
+                    {{ v$.phone.$errors[0].$message }}
+                </div>
+            </div>
+
+            <div class="row g-3 align-items-center">
+                <div class="col-4 my-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        v-model="state.address"
+                        placeholder="Enter your address"
+                    />
+                    <div class="error" v-if="v$.address.$error">
+                        {{ v$.address.$errors[0].$message }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-4 my-3">
+                    <button
+                        type="submit"
+                        @click="addLocation()"
+                        class="col-4 btn btn-primary m-1"
+                    >
+                        Add New Location
+                    </button>
+                    <button
+                        type="submit"
+                        @click="redirectTo({ name: 'home' })"
+                        class="col-4 btn btn-warning m-1"
+                    >
+                        Go To Home
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -154,15 +128,13 @@ export default {
                         showConfirmButton: false,
                         timer: 1500,
                     })
-                    this.redirectTo({ name: 'home' })
                     setTimeout(() => {
                         this.state.name = ''
-                            this.state.phone = ''
-                            this.state.address = ''
-                            this.v$.name.$errors[0].$message = ''
-                            this.v$.phone.$errors[0].$message = ''
-                            this.v$.address.$errors[0].$message = ''
+                        this.state.phone = ''
+                        this.state.address = ''
+                   
                     }, 2000)
+                    this.redirectTo({ name: 'home' })
                 } else {
                     Swal.fire({
                         title: 'Error!',
