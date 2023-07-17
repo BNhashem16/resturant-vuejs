@@ -6,6 +6,7 @@ import ProfileView from '../views/ProfileView.vue'
 import UpdateProfileView from '../views/UpdateProfileView.vue'
 import LocationsCreateView from '../views/LocationsCreateView.vue'
 import ErrorPageView from '../views/ErrorPageView.vue'
+import LocationsDestroyView from '../views/LocationsDestroyView.vue'
 const routes = [
     {
         path: '/',
@@ -36,6 +37,11 @@ const routes = [
         path: '/locations',
         name: 'locations.store',
         component: LocationsCreateView,
+    },
+    {
+        path: '/locations/:location_id',
+        name: 'locations.destroy',
+        component: LocationsDestroyView,
     },
     // stay at the bottom
     {
